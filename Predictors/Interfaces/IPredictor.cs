@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PredictorAdaptiv
+namespace PredictorAdaptiv.Predictors.Interfaces
 {
     public interface IPredictor
     {

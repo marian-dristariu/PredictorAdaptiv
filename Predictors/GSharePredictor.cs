@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PredictorAdaptiv.Predictors.Interfaces;
 
-namespace PredictorAdaptiv
+namespace PredictorAdaptiv.Predictors
 {
     public class GSharePredictor : IPredictor
     {
@@ -28,7 +29,7 @@ namespace PredictorAdaptiv
 
         private int GetIndex(int address)
         {
-            int maskedAddress = address & ((1 << historyBits) - 1); // Mask to relevant bits
+            int maskedAddress = address & (1 << historyBits) - 1; // Mask to relevant bits
             return maskedAddress ^ gbhr; // XOR with GBHR
         }
 
@@ -53,7 +54,7 @@ namespace PredictorAdaptiv
             }
 
             // Update global branch history register
-            gbhr = ((gbhr << 1) | (taken ? 1 : 0)) & ((1 << historyBits) - 1);
+            gbhr = (gbhr << 1 | (taken ? 1 : 0)) & (1 << historyBits) - 1;
         }
     }
 

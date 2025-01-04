@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PredictorAdaptiv.Predictors.Interfaces;
 
-namespace PredictorAdaptiv
+namespace PredictorAdaptiv.Predictors
 {
     public class PAgPredictor : IPredictor
     {
@@ -61,7 +62,7 @@ namespace PredictorAdaptiv
             }
 
             // Update local history
-            localHistories[address] = ((history << 1) | (taken ? 1 : 0)) & ((1 << historyBits) - 1);
+            localHistories[address] = (history << 1 | (taken ? 1 : 0)) & (1 << historyBits) - 1;
         }
     }
 }
